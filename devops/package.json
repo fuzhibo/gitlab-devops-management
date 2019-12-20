@@ -10,16 +10,31 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:gldevops.precheck"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "gldevops.precheck",
+				"title": "GitLab DevOps Management: Begin to do precheck."
 			}
-		]
+		],
+		"configuration": {
+			"title": "GitLab DevOps Management",
+			"properties": {
+				"gitlabDevopsMgt.instanceUrl": {
+					"type": "string",
+					"default": "https://gitlab.com",
+					"description": "Your GitLab instance URL (default is https://gitlab.com)"
+				},
+				"gitlabDevopsMgt.personalAccessToken": {
+					"type": "string",
+					"default": null,
+					"description": "Your GitLab Personal Access Token"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
