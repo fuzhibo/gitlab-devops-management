@@ -20,7 +20,12 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Begin to do precheck.');
+		vscode.window.showInformationMessage('Begin to do precheck...');
+		if (gitlabUrl && gitlabToken) {
+			vscode.window.showInformationMessage("Check GitLab URL and Token if it possible.")
+		} else {
+			vscode.window.showErrorMessage("Failed to get validate GitLab URL and Token.")
+		}
 	});
 
 	context.subscriptions.push(disposable);
