@@ -1,3 +1,5 @@
+import * as needle from 'needle';
+
 // The module 'requests' implementation a HTTP request operator class
 export namespace HttpClient {
     export class Requests {
@@ -7,8 +9,10 @@ export namespace HttpClient {
         }
 
         // do some implementation
-        public get() {
-            console.log("Begin to do GET request...");
+        public get(url: string, options: any = undefined) {
+            console.log("Begin to do GET request for " + url + " ...");
+            var resp = needle('get', url, options);
+            return resp;
         }
 
         public post() {
