@@ -9,18 +9,29 @@ suite('Requests Class Test Suite', () => {
 
     test('GET request test', () => {
         // do get request test
+        var options = {
+            open_timeout: 20000,
+            headers: {
+                'Content-Type': 'application/json',
+                'PRIVATE-TOKEN': 'WXUvDDXJdK79HfqopV7g'
+            }
+        };
         var req = new requests.HttpClient.Requests;
-        var res = req.get('https://www.baidu.com');
+        var res = req.get('https://gitlab.com/api/v4/version', options);
         assert.notEqual(res, undefined);
         res.then((resp) => {
             assert.equal(resp.statusCode, 200);
             assert.notEqual(resp.body, null);
             assert.notEqual(resp.body, undefined);
+            assert.notEqual(resp.body.version, undefined);
+            assert.notEqual(resp.body.revision, undefined);
             console.log("Status code: " + resp.statusCode);
-            console.log("Response: " + resp.body);
+            console.log("GitLab version: " + resp.body.version);
+            console.log("GitLab revision: " + resp.body.revision);
         });
         res.catch((err) => {
             assert.equal(err, undefined);
+            console.log("Get Error: " + err);
         });
     });
 
